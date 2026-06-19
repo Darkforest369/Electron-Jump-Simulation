@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="only dark">
+  <title>Atomic Flame Test & Quantum Waves</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="ui-layer">
+    <div class="panel-header" id="panelHeader">
+      <h2>SIMULATION SETTINGS</h2>
+      <span class="toggle-icon" id="toggleIcon">▲</span>
+    </div>
+
+    <div class="tab-header">
+      <div class="tab-btn active" id="tabLevelsBtn">ENERGY LEVELS</div>
+      <div class="tab-btn" id="tabControlsBtn">CONTROLS</div>
+      <div class="tab-btn" id="tabGuideBtn">GUIDE</div>
+    </div>
+
+    <div class="panel-body">
+      
+      <div id="pageLevels">
+        <div class="control-group">
+          <label>ATOM SELECTION</label>
+          <div class="preset-grid">
+            <button class="mode-btn preset-btn active" data-atom="H">Hydrogen</button>
+            <button class="mode-btn preset-btn" data-atom="Na">Sodium</button>
+            <button class="mode-btn preset-btn" data-atom="K">Potassium</button>
+            <button class="mode-btn preset-btn" data-atom="Ca">Calcium</button>
+            <button class="mode-btn preset-btn" data-atom="Cu">Copper</button>
+            <button class="mode-btn preset-btn" data-atom="Fe">Iron</button>
+            <button class="mode-btn preset-btn" data-atom="Sr">Strontium</button>
+            <button class="mode-btn preset-btn" data-atom="Ba">Barium</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>CURRENT STATE</label>
+          <div class="ratio-display" id="currentStateTxt">n = 1</div>
+          <div class="slider-row">
+            <span style="width: auto;">Energy:</span>
+            <span id="currentEnergyTxt" style="color: #fff; font-family: monospace;">-13.60 eV</span>
+          </div>
+        </div>
+
+        <div class="control-group" style="border-bottom: none;">
+          <label>VALENCE ELECTRON TRANSITIONS</label>
+          <p>Use the <strong>Up (↑)</strong> and <strong>Down (↓)</strong> arrow keys to manually excite or de-excite the outer valence electron.</p>
+        </div>
+        
+        <div class="control-group" style="border-bottom: none; margin-top: 5px;">
+           <label>TRANSITION DATA</label>
+           <p id="transitionInfo" style="color:#00e5ff; font-family: monospace; font-size: 11px;">Press ↑ or ↓ to initiate a transition.</p>
+        </div>
+      </div>
+
+      <div id="pageControls" style="display: none;">
+        
+        <div class="control-group">
+          <label>ENVIRONMENT (FLAME TEST)</label>
+          <button id="heatModeBtn" class="mode-btn" style="background-color: #ff3366; margin-bottom: 12px;">Constant Heat: OFF</button>
+          <p>Simulate a flame test by applying continuous thermal energy. The valence electron will randomly absorb energy to jump to excited states and fall back, emitting a constant stream of photons.</p>
+        </div>
+
+        <div class="control-group" style="border-bottom: none;">
+          <label>REPRESENTATION</label>
+          <button id="waveModeBtn" class="mode-btn" style="background-color: #ff9900; margin-bottom: 12px;">Visual: PARTICLE MODE</button>
+          <p><strong>Particle Mode:</strong> Shows electrons as classical point masses orbiting the nucleus.</p>
+          <p><strong>Wave Mode:</strong> Shows electrons as de Broglie standing waves.</p>
+        </div>
+      </div>
+
+      <div id="pageGuide" style="display: none;">
+        <div class="control-group">
+          <label>HOW IT WORKS</label>
+          <p>This simulates the outer valence electron of various metals. During a jump in Wave Mode, you will witness Quantum Superposition as the initial state slowly morphs into the final state.</p>
+        </div>
+        <div class="control-group" style="border-bottom: none;">
+          <label>KEYBOARD SHORTCUTS</label>
+          <div class="guide-row">
+             <span class="guide-key" style="color:#fff; border-color:#fff;">↑ Up</span>
+             <span>Jump to a higher energy level</span>
+          </div>
+          <div class="guide-row">
+             <span class="guide-key" style="color:#fff; border-color:#fff;">↓ Down</span>
+             <span>Drop to a lower energy level</span>
+          </div>
+          <div class="guide-row" style="margin-top: 8px;">
+             <span class="guide-key" style="color:#fff; border-color:#fff;">H</span>
+             <span>Toggle Constant Heat</span>
+          </div>
+          <div class="guide-row">
+             <span class="guide-key" style="color:#fff; border-color:#fff;">V</span>
+             <span>Toggle Viewing Mode</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <canvas id="canvas"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
