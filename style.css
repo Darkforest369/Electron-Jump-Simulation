@@ -26,7 +26,6 @@ canvas {
     height: 100%;
     touch-action: none;
     transition: background-color 0.8s ease;
-    /* Smooth fade for heat mode */
 }
 
 #ui-layer {
@@ -223,13 +222,142 @@ p {
 
 .guide-key {
     flex-shrink: 0;
-    min-width: 64px;
+    min-width: 68px;
     background: rgba(255, 255, 255, 0.07);
     border: 1px solid #444;
     border-radius: 4px;
     padding: 4px 6px;
     font-family: monospace;
     font-size: 11px;
-    color: rgb(0, 229, 255);
+    color: #00e5ff;
     text-align: center;
+}
+
+/* Exactly copied from Pendulum Simulation */
+.device-notice {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgba(5, 7, 10, 0.92);
+    backdrop-filter: blur(4px);
+}
+
+.device-card {
+    width: min(92vw, 380px);
+    background: rgba(20, 20, 20, 0.98);
+    border: 1px solid #2d2d2d;
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+    padding: 14px;
+    text-align: center;
+}
+
+.device-card strong {
+    display: block;
+    color: #00e5ff;
+    font-size: 13px;
+    letter-spacing: 0.4px;
+    margin-bottom: 6px;
+}
+
+.device-card p {
+    font-size: 11px;
+    line-height: 1.45;
+    color: #ddd;
+    margin-bottom: 8px;
+}
+
+.device-card span {
+    display: inline-block;
+    font-size: 10px;
+    color: #8fd8ff;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+/* Telemetry Box styling */
+#telemetry-control {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    z-index: 10;
+    min-width: 190px;
+}
+
+#telemetryBtn {
+    display: block;
+    width: 100%;
+    background: rgba(20, 20, 20, 0.92);
+    color: #00e5ff;
+    border: 1px solid #333;
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: background 0.2s;
+}
+
+#telemetryBtn:hover {
+    background: #2b2b2b;
+    border-color: #555;
+}
+
+#telemetry-dropdown {
+    display: block;
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 8px 0;
+    margin-bottom: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.telem-label {
+    font-size: 9px;
+    color: #555;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    padding: 2px 12px 6px 12px;
+    border-bottom: 1px solid #2a2a2a;
+    margin-bottom: 4px;
+}
+
+.telem-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 11px;
+    color: #aaa;
+    transition: background 0.15s;
+    user-select: none;
+}
+
+.telem-row:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.telem-pip {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid #555;
+    background: #222;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.telem-pip.on {
+    background: #00e5ff;
+    border-color: #00e5ff;
+    box-shadow: 0 0 4px rgba(0, 229, 255, 0.5);
 }
