@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,12 @@
   <title>Atomic Flame Test & Quantum Waves</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <div class="device-notice" id="deviceNotice" aria-live="polite">
     <div class="device-card">
-      <strong>This stimulation doesn't support Phone</strong>
+      <strong>This simulation doesn't support Phone</strong>
       <p>Please use a tablet or computer for the full simulation experience and controls.</p>
       <span>Tablet or desktop recommended</span>
     </div>
@@ -30,19 +32,34 @@
     </div>
 
     <div class="panel-body">
-      
+
       <div id="pageLevels">
         <div class="control-group">
-          <label>ATOM SELECTION</label>
-          <div class="preset-grid">
-            <button class="mode-btn preset-btn active" data-atom="H">Hydrogen</button>
-            <button class="mode-btn preset-btn" data-atom="Na">Sodium</button>
-            <button class="mode-btn preset-btn" data-atom="K">Potassium</button>
-            <button class="mode-btn preset-btn" data-atom="Ca">Calcium</button>
-            <button class="mode-btn preset-btn" data-atom="Cu">Copper</button>
-            <button class="mode-btn preset-btn" data-atom="Fe">Iron</button>
-            <button class="mode-btn preset-btn" data-atom="Sr">Strontium</button>
-            <button class="mode-btn preset-btn" data-atom="Ba">Barium</button>
+          <label>ATOM SELECTION & COMPOSITION</label>
+          <button id="alloyModeBtn" class="mode-btn alloy-toggle-btn">Alloy Mode: OFF</button>
+
+          <div id="elementSelectorGroup" class="selector-group">
+            <div class="preset-grid" id="elementGrid">
+              <button class="mode-btn preset-btn active" data-atom="H">Hydrogen</button>
+              <button class="mode-btn preset-btn" data-atom="Na">Sodium</button>
+              <button class="mode-btn preset-btn" data-atom="K">Potassium</button>
+              <button class="mode-btn preset-btn" data-atom="Ca">Calcium</button>
+              <button class="mode-btn preset-btn" data-atom="Cu">Copper</button>
+              <button class="mode-btn preset-btn" data-atom="Fe">Iron</button>
+              <button class="mode-btn preset-btn" data-atom="Sr">Strontium</button>
+              <button class="mode-btn preset-btn" data-atom="Ba">Barium</button>
+            </div>
+
+            <div class="preset-grid" id="alloyGrid" style="display: none;">
+              <button class="mode-btn preset-btn active" data-alloy="Na,K">Na-K</button>
+              <button class="mode-btn preset-btn" data-alloy="Fe,Cu">Fe-Cu</button>
+              <button class="mode-btn preset-btn" data-alloy="Ca,Sr">Ca-Sr</button>
+              <button class="mode-btn preset-btn" data-alloy="Cu,Ba">Cu-Ba</button>
+              <button class="mode-btn preset-btn" data-alloy="Fe,Ca">Fe-Ca</button>
+              <button class="mode-btn preset-btn" data-alloy="K,Ba">K-Ba</button>
+              <button class="mode-btn preset-btn" data-alloy="Na,Sr">Na-Sr</button>
+              <button class="mode-btn preset-btn" data-alloy="Sr,Ba">Sr-Ba</button>
+            </div>
           </div>
         </div>
 
@@ -50,58 +67,106 @@
           <label>PRIMARY STATE (CENTER ATOM)</label>
           <div class="ratio-display" id="currentStateTxt">n = 1</div>
           <div class="slider-row">
-            <span style="width: auto;">Energy:</span>
-            <span id="currentEnergyTxt" style="color: #fff; font-family: monospace;">-13.60 eV</span>
+            <span>Energy:</span>
+            <span id="currentEnergyTxt" class="energy-txt">-13.60 eV</span>
           </div>
         </div>
-        
-        <div class="control-group" style="border-bottom: none; margin-top: 5px;">
-           <label>TRANSITION DATA</label>
-           <p id="transitionInfo" style="color:#00e5ff; font-family: monospace; font-size: 11px;">Press 1-8 to initiate a transition.</p>
+
+        <div class="control-group borderless-group">
+          <label>TRANSITION DATA</label>
+          <p id="transitionInfo" class="transition-info">Press 1-8 to initiate a transition.</p>
         </div>
       </div>
 
       <div id="pageControls" style="display: none;">
         <div class="control-group">
-          <label>ENVIRONMENT (FLAME TEST)</label>
-          <button id="heatModeBtn" class="mode-btn" style="background-color: #ff3366; margin-bottom: 12px;">Constant Heat: OFF (H)</button>
-          <p>Simulate a flame test by applying continuous thermal energy. The valence electron will randomly jump between available states, emitting a constant stream of photons.</p>
+          <label>ENVIRONMENT THERMODYNAMICS</label>
+          <div class="slider-row temp-header-row">
+            <span>AMBIENT HEAT</span>
+            <span id="tempDisplay" class="temp-display">0 K</span>
+          </div>
+
+          <div class="temp-slider-container">
+            <input type="range" id="tempSlider" min="0" max="25000" step="100" value="0">
+          </div>
+
+          <p>Simulate a flame test environment by modifying thermal kinetic energy. Higher values excite electrons
+            across broader state functions, establishing spontaneous photon decay fields.</p>
         </div>
 
-        <div class="control-group" style="border-bottom: none;">
+        <div class="control-group">
           <label>REPRESENTATION</label>
-          <button id="waveModeBtn" class="mode-btn" style="background-color: #ff9900; margin-bottom: 8px;">Visual: PARTICLE MODE (V)</button>
+          <button id="waveModeBtn" class="mode-btn wave-btn">Visual: PARTICLE MODE (V)</button>
           <p><strong>Particle Mode:</strong> Shows electrons as classical point masses orbiting the nucleus.</p>
           <p><strong>Wave Mode:</strong> Shows electrons as de Broglie standing waves.</p>
+        </div>
+
+        <div class="control-group borderless-group" id="laserControlGroup" style="display: none;">
+          <label>TUNABLE PHOTON LASER</label>
+          <button id="toggleLaserBtn" class="mode-btn laser-toggle-btn">Laser Target: OFF</button>
+
+          <div id="laserSettings" class="laser-settings-box" style="display: none;">
+            <div class="laser-input-row">
+              <span>Visible Wavelength (nm):</span>
+              <input type="number" id="laserWavelengthInput" value="589" min="380" max="780" class="laser-input">
+            </div>
+            <button id="fireLaserBtn" class="mode-btn laser-fire-btn">FIRE PHOTON BEAM</button>
+          </div>
+          <p class="laser-desc">Tune the laser to a specific visible photon wavelength (380-780nm). If the wavelength
+            matches an exact quantum energy gap for the selected element, the lattice will absorb the photons and
+            illuminate.</p>
         </div>
       </div>
 
       <div id="pageGuide" style="display: none;">
         <div class="control-group">
-          <label>LATTICE & MACRO MODE</label>
-          <p>Zoom out far enough to completely abstract the quantum mechanical models into a unified, physical macroscopic lattice structure. Blocks will glow heavily during photon emission states.</p>
+          <label>LATTICE & INCANDESCENCE</label>
+          <p>Zoom out far enough to abstract the quantum models into a physical lattice structure. Blocks glow during
+            photon emission states. At extreme temperatures, the surface of the object succumbs to blackbody radiation
+            and glows white-hot.</p>
         </div>
-        <div class="control-group" style="border-bottom: none;">
+
+        <div class="control-group">
+          <label>MULTI-ELEMENT ALLOY</label>
+          <p>Toggling Alloy Mode reveals 8 specific alloys. Selecting one will mix the lattice grid. Manual keys (1-8)
+            are disabled. You must use heat or lasers to extract the combined spectral fingerprint.</p>
+        </div>
+
+        <div class="control-group">
+          <label>TUNABLE PHOTON LASER</label>
+          <p>When fully zoomed out, the <strong>Laser</strong> module becomes available in Controls. Fire beams at the
+            macroscopic structure to test quantum absorption gaps.</p>
+        </div>
+
+        <div class="control-group">
+          <label>SPECTROMETER ANALYTICS</label>
+          <p>Hover your mouse over any glowing emission line on the live spectrometer panel to view precise analytical
+            data, including the exact wavelength (nm) and the quantum decay transition path.</p>
+          <p>In Alloy Mode, the tooltip will also identify the specific element responsible for releasing that color.
+          </p>
+        </div>
+
+        <div class="control-group borderless-group">
           <label>KEYBOARD & MOUSE SHORTCUTS</label>
           <div class="guide-row">
-             <span class="guide-key" style="color:#fff; border-color:#fff;">1 - 8</span>
-             <span>Instantly target specific quantum shell level</span>
+            <span class="guide-key">1 - 8</span>
+            <span>Instantly target specific shell (Disabled in Alloy Mode)</span>
           </div>
           <div class="guide-row">
-             <span class="guide-key" style="color:#fff; border-color:#fff;">Scroll</span>
-             <span>Exponentially zoom out/in camera</span>
+            <span class="guide-key">Scroll</span>
+            <span>Exponentially zoom out/in camera</span>
           </div>
           <div class="guide-row" style="margin-top: 8px;">
-             <span class="guide-key" style="color:#fff; border-color:#fff;">H</span>
-             <span>Toggle Constant Heat</span>
+            <span class="guide-key">T</span>
+            <span>Set the temperature to 0K</span>
           </div>
           <div class="guide-row">
-             <span class="guide-key" style="color:#fff; border-color:#fff;">V</span>
-             <span>Toggle Viewing Mode</span>
+            <span class="guide-key">V</span>
+            <span>Toggle Viewing Mode</span>
           </div>
           <div class="guide-row">
-             <span class="guide-key" style="color:#fff; border-color:#fff;">S</span>
-             <span>Toggle Spectrometer</span>
+            <span class="guide-key">S</span>
+            <span>Toggle Spectrometer</span>
           </div>
         </div>
       </div>
@@ -123,4 +188,5 @@
   <canvas id="canvas"></canvas>
   <script src="script.js"></script>
 </body>
+
 </html>

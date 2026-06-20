@@ -132,6 +132,11 @@ p {
     border-bottom: 1px solid #333;
 }
 
+.borderless-group {
+    border-bottom: none;
+    margin-top: 5px;
+}
+
 .control-group label {
     display: block;
     font-size: 11px;
@@ -162,6 +167,22 @@ p {
     font-size: 11px;
     color: #888;
     flex-shrink: 0;
+}
+
+.energy-txt {
+    color: #fff;
+    font-family: monospace;
+}
+
+.transition-info {
+    color: #00e5ff;
+    font-family: monospace;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.selector-group {
+    transition: opacity 0.3s;
 }
 
 .preset-grid {
@@ -210,6 +231,77 @@ p {
     box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
 }
 
+.temp-header-row {
+    justify-content: space-between;
+    font-family: monospace;
+}
+
+.temp-header-row span:first-child {
+    letter-spacing: 0.5px;
+}
+
+.temp-display {
+    color: #ffffff !important;
+    font-weight: bold;
+    font-size: 13px !important;
+    text-shadow: 0 0 5px #ff3366;
+}
+
+.temp-slider-container {
+    background: linear-gradient(90deg, #333333 0%, #ff3366 100%);
+    padding: 12px 10px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#tempSlider {
+    width: 100%;
+    cursor: pointer;
+    accent-color: #ffffff;
+    margin: 0;
+    display: block;
+}
+
+.wave-btn {
+    background-color: #ff9900;
+    margin-bottom: 8px;
+}
+
+.laser-settings-box {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #333;
+    margin-bottom: 10px;
+}
+
+.laser-input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.laser-input-row span {
+    font-size: 11px;
+}
+
+.laser-input {
+    width: 70px;
+    background: #111;
+    color: #c8a2c8;
+    font-family: monospace;
+    font-weight: bold;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.laser-desc {
+    margin-top: 8px;
+}
+
 .guide-row {
     display: flex;
     align-items: flex-start;
@@ -233,7 +325,7 @@ p {
     text-align: center;
 }
 
-/* Exactly copied from Pendulum Simulation */
+/* Device Notice */
 .device-notice {
     position: fixed;
     inset: 0;
@@ -360,4 +452,56 @@ p {
     background: #00e5ff;
     border-color: #00e5ff;
     box-shadow: 0 0 4px rgba(0, 229, 255, 0.5);
+}
+
+/* ----------------------------------------------------
+   PENDULUM UI DESIGN CLONE FOR SPECIFIC BUTTONS
+------------------------------------------------------- */
+
+/* Alloy Mode Toggle (Purple Theme) */
+.alloy-toggle-btn {
+    background-color: #222;
+    color: #e040fb;
+    border: 1px solid #e040fb !important;
+    margin-bottom: 10px;
+    transition: all 0.2s ease;
+}
+
+.alloy-toggle-btn:hover,
+.alloy-toggle-btn.active {
+    background-color: #e040fb;
+    color: #000;
+    box-shadow: 0 0 10px rgba(224, 64, 251, 0.4);
+}
+
+/* Laser Target Toggle Mode (Teal Theme) */
+.laser-toggle-btn {
+    background-color: #222;
+    color: #00bfa5;
+    border: 1px solid #00bfa5 !important;
+    margin-bottom: 10px;
+    transition: all 0.2s ease;
+}
+
+.laser-toggle-btn:hover,
+.laser-toggle-btn.active {
+    background-color: #00bfa5;
+    color: #000;
+    box-shadow: 0 0 10px rgba(0, 191, 165, 0.4);
+}
+
+/* Fire Photon Beam Action Button (Lilac Theme) */
+.laser-fire-btn {
+    background-color: #222;
+    color: #c8a2c8;
+    border: 1px solid #c8a2c8 !important;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.laser-fire-btn:hover,
+.laser-fire-btn:active {
+    background-color: #c8a2c8;
+    color: #000;
+    box-shadow: 0 0 10px rgba(200, 162, 200, 0.4);
 }
